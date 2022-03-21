@@ -1,0 +1,9 @@
+1) REST API will be used for the front-end. 
+This will give a standard and understandable way to organize interaction for the front-end with microservices.
+
+2) The message broker will be used to receive data stream from mobile devices. 
+This strategy will allow you to receive a large amount of data from mobile devices. 
+The message broker will allow you to control the load on the infrastructure.
+ 
+3) gRPC will be used to receive data from the Kafka. 
+This strategy will provide a fast and integrity way to ingest data into the Database.
