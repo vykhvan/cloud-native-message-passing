@@ -9,8 +9,7 @@ from sqlalchemy.sql import text
 
 logging.basicConfig(level=logging.WARNING)
 logger = logging.getLogger("connections-api")
-PERSONS_SERVICE_API = "http://localhost:30002/api/persons"
-
+PERSONS_SERVICE_ENDPOINT = "persons-api.default.svc.cluster.local:5000"
 
 class ConnectionService:
     @staticmethod
@@ -33,7 +32,7 @@ class ConnectionService:
         )
 
         # get persons data from Persons Service
-        retrieved_persons = requests.get(PERSONS_SERVICE_API)
+        retrieved_persons = requests.get(PERSONS_SERVICE_ENDPOINT)
         retrieved_persons = retrieved_persons.json()
         persons = []
         for each in retrieved_persons:
