@@ -4,12 +4,13 @@ from datetime import datetime, timedelta
 from typing import Dict, List
 
 from app import db
+from app.config import PERSONS_SERVICE_ENDPOINT
 from app.udaconnect.models import Connection, Location, Person
 from sqlalchemy.sql import text
 
 logging.basicConfig(level=logging.WARNING)
 logger = logging.getLogger("connections-api")
-PERSONS_SERVICE_ENDPOINT = "persons-api.default.svc.cluster.local:5000"
+
 
 class ConnectionService:
     @staticmethod
@@ -36,12 +37,12 @@ class ConnectionService:
         retrieved_persons = retrieved_persons.json()
         persons = []
         for each in retrieved_persons:
-            person = Person()
-            person.id = each["id"]
-            person.first_name = each["first_name"]
-            person.last_name = each["last_name"]
-            person.company_name = each["company_name"]
-            persons.append(person)
+            p = Person()
+            p.id = each["id"]
+            p.first_name = each["first_name"]
+            p.last_name = each["last_name"]
+            p.company_name = each["company_name"]
+            persons.append(p)
 
         # Cache all users in memory for quick lookup
         person_map: Dict[str, Person] = {person.id: person for person in persons}
