@@ -14,7 +14,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0elocation.proto\"Y\n\x0fLocationMessage\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x11\n\tlongitude\x18\x02 \x01(\t\x12\x10\n\x08latitude\x18\x03 \x01(\t\x12\x15\n\rcreation_time\x18\x04 \x01(\t\"\x07\n\x05\x45mpty2`\n\x0fLocationService\x12,\n\x06\x43reate\x12\x10.LocationMessage\x1a\x10.LocationMessage\x12\x1f\n\x03Get\x12\x06.Empty\x1a\x10.LocationMessageb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0elocation.proto\"I\n\x0fLocationMessage\x12\x11\n\tperson_id\x18\x01 \x01(\x05\x12\x11\n\tlongitude\x18\x02 \x01(\t\x12\x10\n\x08latitude\x18\x03 \x01(\t\"\x07\n\x05\x45mpty2?\n\x0fLocationService\x12,\n\x06\x43reate\x12\x10.LocationMessage\x1a\x10.LocationMessageb\x06proto3')
 
 
 
@@ -39,9 +39,9 @@ if _descriptor._USE_C_DESCRIPTORS == False:
 
   DESCRIPTOR._options = None
   _LOCATIONMESSAGE._serialized_start=18
-  _LOCATIONMESSAGE._serialized_end=107
-  _EMPTY._serialized_start=109
-  _EMPTY._serialized_end=116
-  _LOCATIONSERVICE._serialized_start=118
-  _LOCATIONSERVICE._serialized_end=214
+  _LOCATIONMESSAGE._serialized_end=91
+  _EMPTY._serialized_start=93
+  _EMPTY._serialized_end=100
+  _LOCATIONSERVICE._serialized_start=102
+  _LOCATIONSERVICE._serialized_end=165
 # @@protoc_insertion_point(module_scope)
