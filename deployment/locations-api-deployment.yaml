@@ -6,9 +6,9 @@ metadata:
   name: locations-api
 spec:
   ports:
-  - name: "5000"
-    port: 5000
-    targetPort: 5000
+  - name: "5005"
+    port: 5005
+    targetPort: 5005
     nodePort: 30001
   selector:
     service: locations-api

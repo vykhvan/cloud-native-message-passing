@@ -1,7 +1,6 @@
 import os
 import psycopg2
 from geoalchemy2.functions import ST_Point
-from sqlalchemy.sql import text
 
 import location_pb2
 import location_pb2_grpc
@@ -20,25 +19,24 @@ class LocationServicer(location_pb2_grpc.LocationServiceServicer):
             user=DB_USERNAME,
             password=DB_PASSWORD,
             host=DB_HOST,
-            port=DB_PORT
+            port=DB_PORT,
         )
+
         cursor = conn.cursor()
-        query = text(
-            """
-            INSERT INTO location(person_id, coordinate) VALUES (%s, %s)
-            """
-        )
+        query = "INSERT INTO location (person_id, coordinate) VALUES (%s, ST_Point(%s, %s))"
 
         new_location = (
             request.person_id,
-            ST_Point(request.longitude, request.latitude),
+            request.latitude,
+            request.longitude,
         )
+
         cursor.execute(query, new_location)
         conn.commit()
 
         location = {
             "person_id": request.person_id,
+            "latitude": request.latitude,
             "longitude": request.longitude,
-            "latitude": request.latitude
         }
         return location_pb2.LocationMessage(**location)
