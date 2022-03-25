@@ -12,12 +12,15 @@ DB_PORT = os.environ["DB_PORT"]
 DB_NAME = os.environ["DB_NAME"]
 KAFKA_SERVER = os.environ["KAFKA_SERVER"]
 
-logging.basicConfig(level=logging.DEBUG)
+logging.basicConfig(level=logging.INFO)
 
 
 class Consumer:
     def __init__(self):
-        self.consumer = KafkaConsumer("location", bootstrap_servers=KAFKA_SERVER)
+        self._init_database()
+        
+    def _init_database(self):
+        self.consumer = KafkaConsumer("location", bootstrap_servers=[KAFKA_SERVER])
         self.conn = psycopg2.connect(
             database=DB_NAME,
             user=DB_USERNAME,
