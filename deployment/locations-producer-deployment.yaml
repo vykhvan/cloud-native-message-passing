@@ -1,0 +1,42 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    service: locations-producer
+  name: locations-producer
+spec:
+  ports:
+  - name: "5005"
+    port: 5005
+    targetPort: 5005
+    nodePort: 30001
+  selector:
+    service: locations-producer
+  type: NodePort
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    service: locations-producer
+  name: locations-producer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      service: locations-producer
+  template:
+    metadata:
+      labels:
+        service: locations-producer
+    spec:
+      containers:
+      - image: vykhvan/udaconnect-locations-producer:latest
+        name: locations-producer
+        imagePullPolicy: Always
+        env:
+        - name: KAFKA_SERVER
+          valueFrom:
+            configMapKeyRef:
+              name: kafka
+              key: KAFKA_SERVER
