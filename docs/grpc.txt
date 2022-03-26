@@ -1,0 +1,21 @@
+Locations API use gRPC and kafka for insert data to Postgres.
+gRPC available on localhost:30001
+
+For use gRPC need proto files: location_pb2.py, location_pb2_grpc.py.
+
+Example:
+==========================================================
+import grpc
+import location_pb2
+import location_pb2_grpc
+channel = grpc.insecure_channel("localhost:30001")
+stub = location_pb2_grpc.LocationServiceStub(channel)
+location = location_pb2.LocationMessage(person_id=24, latitude=43.233485, longitude=76.922217)
+response = stub.Create(location)
+
+Run python script: modules/locations_producer/app/writer.py
+------------------------------------------------------------
+
+Connect to Postgres use command for check:
+
+kubectl port-forward svc/postgres-locations 5432:5432
