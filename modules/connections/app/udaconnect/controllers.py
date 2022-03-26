@@ -12,9 +12,6 @@ DATE_FORMAT = "%Y-%m-%d"
 api = Namespace("Connections", description="Connections Service API.")  # noqa
 
 
-# TODO: This needs better exception handling
-
-
 @api.route("/persons/<person_id>/connection")
 @api.param("start_date", "Lower bound of date range", _in="query")
 @api.param("end_date", "Upper bound of date range", _in="query")
